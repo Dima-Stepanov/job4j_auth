@@ -1,9 +1,6 @@
 package ru.job4j.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -23,11 +20,15 @@ public class Person {
     private int id;
     private String login;
     private String password;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
 
-    public static Person of(String login, String password) {
+    public static Person of(String login, String password, Employee employee) {
         Person person = new Person();
         person.login = login;
         person.password = password;
+        person.employee = employee;
         return person;
     }
 
@@ -55,6 +56,14 @@ public class Person {
         this.password = password;
     }
 
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -75,6 +84,6 @@ public class Person {
     @Override
     public String toString() {
         return "Person{id=" + id + ", login='" + login + '\''
-                + ", password='" + password + '\'' + '}';
+                + ", password='" + password + '\'' + ", employee=" + employee + '}';
     }
 }
