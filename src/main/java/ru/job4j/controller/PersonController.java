@@ -94,7 +94,6 @@ public class PersonController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         this.persons.delete(person.get());
-        rest.delete(API_EMPLOYEE_ID, person.get().getEmployee().getId());
         LOG.info("Delete person id={}", id);
         return ResponseEntity.ok().build();
     }
