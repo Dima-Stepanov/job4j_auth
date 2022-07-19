@@ -1,5 +1,8 @@
 package ru.job4j.domain;
 
+import com.fasterxml.jackson.annotation.JacksonInject;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.*;
@@ -26,6 +29,15 @@ public class Employee {
 
     public static Employee of(String name, String surname, int inn) {
         Employee employee = new Employee();
+        employee.name = name;
+        employee.surname = surname;
+        employee.inn = inn;
+        return employee;
+    }
+
+    public static Employee of(int id, String name, String surname, int inn) {
+        Employee employee = new Employee();
+        employee.id = id;
         employee.name = name;
         employee.surname = surname;
         employee.inn = inn;
