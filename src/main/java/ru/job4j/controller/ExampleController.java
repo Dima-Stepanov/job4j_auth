@@ -90,7 +90,7 @@ public class ExampleController {
      */
     @GetMapping("/example5")
     public ResponseEntity<byte[]> example5() throws IOException {
-        var content = Files.readAllBytes(Path.of("./file/book.pdf"));
+        var content = Files.readAllBytes(Path.of("./file/Book.pdf"));
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_PDF)
                 .contentLength(content.length)
